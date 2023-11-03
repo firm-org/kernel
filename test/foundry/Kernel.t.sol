@@ -2,14 +2,14 @@
 pragma solidity ^0.8.0;
 
 import {EntryPoint} from "account-abstraction/core/EntryPoint.sol";
-import "src/factory/AdminLessERC1967Factory.sol";
-import "src/factory/KernelFactory.sol";
-import "src/Kernel.sol";
-import "src/validator/ECDSAValidator.sol";
+import "../../src/factory/AdminLessERC1967Factory.sol";
+import "../../src/factory/KernelFactory.sol";
+import "../../src/Kernel.sol";
+import "../../src/validator/ECDSAValidator.sol";
 // test artifacts
-import "src/test/TestValidator.sol";
-import "src/test/TestERC721.sol";
-import "src/test/TestKernel.sol";
+import "../../src/test/TestValidator.sol";
+import "../../src/test/TestERC721.sol";
+import "../../src/test/TestKernel.sol";
 // test utils
 import "forge-std/Test.sol";
 import {ERC4337Utils, KernelTestBase} from "./utils/ERC4337Utils.sol";

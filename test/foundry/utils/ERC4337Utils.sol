@@ -4,9 +4,9 @@ pragma solidity ^0.8.0;
 import {EntryPoint, UserOperation} from "account-abstraction/core/EntryPoint.sol";
 import "forge-std/Test.sol";
 import "solady/utils/ECDSA.sol";
-import "src/Kernel.sol";
-import "src/factory/KernelFactory.sol";
-import "src/validator/ECDSAValidator.sol";
+import "../../../src/Kernel.sol";
+import "../../../src/factory/KernelFactory.sol";
+import "../../../src/validator/ECDSAValidator.sol";
 
 abstract contract KernelTestBase is Test {
     Kernel kernel;

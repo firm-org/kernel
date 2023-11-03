@@ -3,11 +3,10 @@
 pragma solidity ^0.8.0;
 
 import "solady/utils/ECDSA.sol";
-import "src/utils/KernelHelper.sol";
-import "src/Kernel.sol";
+import "../Kernel.sol";
 import {WalletKernelStorage, ExecutionDetail} from "src/abstract/KernelStorage.sol";
-import "src/interfaces/IValidator.sol";
-import "src/common/Types.sol";
+import "../interfaces/IValidator.sol";
+import "../common/Types.sol";
 
 struct KillSwitchValidatorStorage {
     address guardian;

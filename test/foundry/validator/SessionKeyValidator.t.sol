@@ -1,20 +1,20 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "src/factory/AdminLessERC1967Factory.sol";
-import "src/Kernel.sol";
-import "src/validator/ECDSAValidator.sol";
-import "src/factory/KernelFactory.sol";
+import "../../../src/factory/AdminLessERC1967Factory.sol";
+import "../../../src/Kernel.sol";
+import "../../../src/validator/ECDSAValidator.sol";
+import "../../../src/factory/KernelFactory.sol";
 // test artifacts
-import "src/test/TestValidator.sol";
-import "src/test/TestExecutor.sol";
-import "src/test/TestERC721.sol";
-import "src/test/TestERC20.sol";
+import "../../../src/test/TestValidator.sol";
+import "../../../src/test/TestExecutor.sol";
+import "../../../src/test/TestERC721.sol";
+import "../../../src/test/TestERC20.sol";
 // test utils
 import "forge-std/Test.sol";
 import "test/foundry/utils/ERC4337Utils.sol";
 // test actions/validators
-import "src/validator/SessionKeyValidator.sol";
+import "../../../src/validator/SessionKeyValidator.sol";
 
 using ERC4337Utils for EntryPoint;
 

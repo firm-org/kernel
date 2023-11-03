@@ -1,6 +1,7 @@
 pragma solidity ^0.8.0;
 
-import "src/Kernel.sol";
+import {Kernel, IEntryPoint, IKernelValidator} from "../Kernel.sol";
+import {WalletKernelStorage} from "../abstract/KernelStorage.sol";
 
 contract TestKernel is Kernel {
     constructor(IEntryPoint _entryPoint) Kernel(_entryPoint) {}

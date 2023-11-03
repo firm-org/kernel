@@ -3,9 +3,9 @@
 pragma solidity ^0.8.0;
 
 import "solady/utils/ECDSA.sol";
-import "src/utils/KernelHelper.sol";
-import "src/interfaces/IValidator.sol";
-import "src/common/Types.sol";
+import {IEntryPoint, UserOperation} from "account-abstraction/interfaces/IEntryPoint.sol";
+import {IKernelValidator} from "../interfaces/IValidator.sol";
+import {ValidationData, SIG_VALIDATION_FAILED} from "../common/Types.sol";
 
 struct ECDSAValidatorStorage {
     address owner;

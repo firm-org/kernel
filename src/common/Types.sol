@@ -1,6 +1,6 @@
 pragma solidity ^0.8.9;
 
-import "src/common/Constants.sol";
+import "../common/Constants.sol";
 
 type ValidAfter is uint48;
 
@@ -26,5 +26,27 @@ function parseValidationData(ValidationData validationData)
         switch iszero(validUntil)
         case 1 { validUntil := 0xffffffffffff }
         validAfter := shr(208, validationData)
+    }
+}
+
+function _intersectValidationData(ValidationData a, ValidationData b) pure returns (ValidationData validationData) {
+    assembly {
+        // xor(a,b) == shows only matching bits
+        // and(xor(a,b), 0x000000000000000000000000ffffffffffffffffffffffffffffffffffffffff) == filters out the validAfter and validUntil bits
+        // if the result is not zero, then aggregator part is not matching
+        switch iszero(and(xor(a, b), 0x000000000000000000000000ffffffffffffffffffffffffffffffffffffffff))
+        case 1 {
+            // validAfter
+            let a_vd := and(0xffffffffffff000000000000ffffffffffffffffffffffffffffffffffffffff, a)
+            let b_vd := and(0xffffffffffff000000000000ffffffffffffffffffffffffffffffffffffffff, b)
+            validationData := xor(a_vd, mul(xor(a_vd, b_vd), gt(b_vd, a_vd)))
+            // validUntil
+            a_vd := and(0x000000000000ffffffffffff0000000000000000000000000000000000000000, a)
+            b_vd := and(0x000000000000ffffffffffff0000000000000000000000000000000000000000, b)
+            let until := xor(a_vd, mul(xor(a_vd, b_vd), lt(b_vd, a_vd)))
+            if iszero(until) { until := 0x000000000000ffffffffffff0000000000000000000000000000000000000000 }
+            validationData := or(validationData, until)
+        }
+        default { validationData := SIG_VALIDATION_FAILED_UINT }
     }
 }
